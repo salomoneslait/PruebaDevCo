@@ -19,6 +19,11 @@ jobs:
       - name: terraform init
         id: init
         run: |
-          terraform init
+          terraform init \
+            -input=false \
+            -backend-config="bucket=devco-state" \
+            -backend-config="key=infra.tfstate" \
+            -backend-config="region=us-east-1" \
+            -backend-config="encrypt=true"
     
         
