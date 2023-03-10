@@ -1,6 +1,6 @@
 # pipeline CI/CD 
 
-name: 'Terraform'
+name: 'Terraform Apply'
 
 on:
   push:
