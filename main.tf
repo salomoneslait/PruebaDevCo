@@ -77,7 +77,7 @@ module "eks" {
 
   # Self Managed Node Group(s)
   self_managed_node_group_defaults = {
-    instance_type                          = "t3.micro"
+    instance_type                          = "a1.medium"
     update_launch_template_default_version = true
     iam_role_additional_policies = {
       AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
@@ -104,7 +104,7 @@ module "eks" {
             weighted_capacity = "1"
           },
           {
-            instance_type     = "t3.micro"
+            instance_type     = "t3.large"
             weighted_capacity = "2"
           },
         ]
