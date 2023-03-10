@@ -77,7 +77,7 @@ module "eks" {
 
   # Self Managed Node Group(s)
   self_managed_node_group_defaults = {
-    instance_type                          = "a1.medium"
+    instance_type                          = "t2.micro"
     update_launch_template_default_version = true
     iam_role_additional_policies = {
       AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
@@ -100,11 +100,11 @@ module "eks" {
 
         override = [
           {
-            instance_type     = "t3.micro"
+            instance_type     = "t2.micro"
             weighted_capacity = "1"
           },
           {
-            instance_type     = "t3.large"
+            instance_type     = "t2.large"
             weighted_capacity = "2"
           },
         ]
@@ -114,7 +114,7 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.micro"]
+    instance_types = ["t2.micro"]
   }
 
   eks_managed_node_groups = {
@@ -124,7 +124,7 @@ module "eks" {
       max_size     = 10
       desired_size = 1
 
-      instance_types = ["t3.micro"]
+      instance_types = ["t2.micro"]
       capacity_type  = "SPOT"
     }
   }
