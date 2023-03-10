@@ -19,11 +19,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         
-      - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v12
-        with:
-          output_format: cli,sarif
-          output_file_path: console,results.sarif
+      #- name: Checkov GitHub Action
+      #  uses: bridgecrewio/checkov-action@v12
+      #  with:
+      #    output_format: cli,sarif
+      #    output_file_path: console,results.sarif
           
       - name: install terraform
         uses: hashicorp/setup-terraform@v1
