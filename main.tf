@@ -56,6 +56,49 @@ resource "aws_subnet" "devco_control_plane_subnet_3" {
   cidr_block = "10.0.6.0/24"
 }
 
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.devco_vpc.id
+}
+
+resource "aws_route_table" "rt" {
+  vpc_id = aws_vpc.devco_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+}
+
+resource "aws_route_table_association" "rta_subnet_1" {
+  subnet_id      = aws_subnet.devco_subnet_1.id
+  route_table_id = aws_route_table.rt.id
+}
+
+resource "aws_route_table_association" "rta_subnet_2" {
+  subnet_id      = aws_subnet.devco_subnet_2.id
+  route_table_id = aws_route_table.rt.id
+}
+
+resource "aws_route_table_association" "rta_subnet_3" {
+  subnet_id      = aws_subnet.devco_subnet_3.id
+  route_table_id = aws_route_table.rt.id
+}
+
+resource "aws_route_table_association" "rta_control_plane_subnet_1" {
+  subnet_id      = aws_subnet.devco_control_plane_subnet_1.id
+  route_table_id = aws_route_table.rt.id
+}
+
+resource "aws_route_table_association" "rta_control_plane_subnet_2" {
+  subnet_id      = aws_subnet.devco_control_plane_subnet_2.id
+  route_table_id = aws_route_table.rt.id
+}
+
+resource "aws_route_table_association" "rta_control_plane_subnet_3" {
+  subnet_id      = aws_subnet.devco_control_plane_subnet_3.id
+  route_table_id = aws_route_table.rt.id
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
