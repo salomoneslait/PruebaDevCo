@@ -8,7 +8,7 @@ on:
       - develop  
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
     env: 
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
