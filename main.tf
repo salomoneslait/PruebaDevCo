@@ -125,41 +125,7 @@ module "eks" {
   control_plane_subnet_ids = [aws_subnet.devco_control_plane_subnet_1.id, aws_subnet.devco_control_plane_subnet_2.id, aws_subnet.devco_control_plane_subnet_3.id]
 
   # Self Managed Node Group(s)
-  self_managed_node_group_defaults = {
-    instance_type                          = "t2.micro"
-    update_launch_template_default_version = true
-    iam_role_additional_policies = {
-      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-    }
-  }
-
-  self_managed_node_groups = {
-    one = {
-      name         = "mixed-1"
-      max_size     = 5
-      desired_size = 2
-
-      use_mixed_instances_policy = true
-      mixed_instances_policy = {
-        instances_distribution = {
-          on_demand_base_capacity                  = 0
-          on_demand_percentage_above_base_capacity = 10
-          spot_allocation_strategy                 = "capacity-optimized"
-        }
-
-        override = [
-          {
-            instance_type     = "t2.micro"
-            weighted_capacity = "1"
-          },
-          {
-            instance_type     = "t2.large"
-            weighted_capacity = "2"
-          },
-        ]
-      }
-    }
-  }
+  
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
