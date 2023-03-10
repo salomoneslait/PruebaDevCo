@@ -24,7 +24,7 @@ jobs:
         with:
           output_format: cli,sarif
           output_file_path: console,results.sarif
-          skip_check: CKV2_AWS_12, CKV2_AWS_11, CKV2_GHA_1
+          skip_check: "CKV2_AWS_12,CKV2_AWS_11,CKV2_GHA_1"
           
       - name: install terraform
         uses: hashicorp/setup-terraform@v1
