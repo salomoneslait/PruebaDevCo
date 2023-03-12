@@ -32,8 +32,6 @@ spec:
           requests:
             memory: 256Mi
           securityContext:
-            seccompProfile:
-              type: RuntimeDefault
             allowPrivilegeEscalation: false
             runAsUser: 10001
             readOnlyRootFilesystem: true
