@@ -32,7 +32,7 @@ spec:
             memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
-            runAsUser: 10001
+            # runAsUser: 10001
             readOnlyRootFilesystem: true
             capabilities:
               drop:
