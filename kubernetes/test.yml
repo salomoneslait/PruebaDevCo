@@ -16,7 +16,17 @@ spec:
         - name: imagen-prueba
           image: salomoneslait/prueba-devco:imagen-prueba
           securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+              or
+              type: DockerDefault
+            allowPrivilegeEscalation: false
+            runAsUser: <UID higher then 10000>
             readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+               - NET_RAW
+               - ALL
           ports:
             - containerPort: 3000
 
