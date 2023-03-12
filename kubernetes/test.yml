@@ -15,6 +15,8 @@ spec:
       containers:
         - name: imagen-prueba
           image: salomoneslait/prueba-devco:imagen-prueba
+          securityContext:
+            readOnlyRootFilesystem: true
           ports:
             - containerPort: 3000
 
