@@ -1,7 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pruebadevco
+
+---
+
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: test-devco
+  namespace: pruebadevco
 spec:
   selector:
     matchLabels:
@@ -14,14 +22,18 @@ spec:
     spec:
       containers:
         - name: imagen-prueba
-          image: salomoneslait/prueba-devco:imagen-prueba
+          imagePullPolicy: Always
+          image: salomoneslait/prueba-devco@sha256:9ab2d674e7dd1483bf3f78a6a2322d038c71df81d09cf3f7cc57318b13a1c14d
+          resources:
+            requests:
+              cpu: 500m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
           securityContext:
-            seccompProfile:
-              type: RuntimeDefault
-              or
-              type: DockerDefault
             allowPrivilegeEscalation: false
-            runAsUser: <UID higher then 10000>
+            runAsUser: 10001
             readOnlyRootFilesystem: true
             capabilities:
               drop:
@@ -36,6 +48,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: loadbalancer-devco
+  namespace: pruebadevco
 spec:
   type: LoadBalancer
   selector:
