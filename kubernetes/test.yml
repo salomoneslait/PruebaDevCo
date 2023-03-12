@@ -23,6 +23,14 @@ spec:
       containers:
         - name: imagen-prueba
           image: salomoneslait/prueba-devco:imagen-prueba
+          resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            memory: 256Mi
           securityContext:
             seccompProfile:
               type: RuntimeDefault
