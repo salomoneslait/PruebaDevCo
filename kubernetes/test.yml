@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: test-devco
+spec:
+  selector:
+    matchLabels:
+      app: test-devco
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        app: test-devco
+    spec:
+      containers:
+        - name: imagen-prueba
+          image: salomoneslait/prueba-devco:imagen-prueba
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+              or
+              type: DockerDefault
+            allowPrivilegeEscalation: false
+            runAsUser: <UID higher then 10000>
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+               - NET_RAW
+               - ALL
+          ports:
+            - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer-devco
+spec:
+  type: LoadBalancer
+  selector:
+    app: test-devco
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
