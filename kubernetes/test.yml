@@ -17,7 +17,7 @@ spec:
           image: salomoneslait/prueba-devco:imagen-prueba
           securityContext:
             seccompProfile:
-              type: Docker
+              type: docker/default
             allowPrivilegeEscalation: false
             runAsUser: 10001
             readOnlyRootFilesystem: true
