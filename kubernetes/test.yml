@@ -22,7 +22,8 @@ spec:
     spec:
       containers:
         - name: imagen-prueba
-          image: salomoneslait/prueba-devco:imagen-prueba
+          imagePullPolicy: Always
+          image: salomoneslait/prueba-devco@sha256:9ab2d674e7dd1483bf3f78a6a2322d038c71df81d09cf3f7cc57318b13a1c14d
           resources:
             requests:
               cpu: 500m
