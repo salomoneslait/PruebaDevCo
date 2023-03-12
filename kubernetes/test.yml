@@ -23,13 +23,13 @@ spec:
       containers:
         - name: imagen-prueba
           imagePullPolicy: Always
-          image: salomoneslait/prueba-devco@sha256:9ab2d674e7dd1483bf3f78a6a2322d038c71df81d09cf3f7cc57318b13a1c14d
+          image: salomoneslait/prueba-devco@sha256:a0c4a03a37e917b66683155edfc789fcd999e5e73a62c1645ad10fdf04725c44
           resources:
             requests:
-              cpu: 500m
+              cpu: 100m
               memory: 256Mi
             limits:
-              cpu: "1"
+              cpu: "2"
               memory: 512Mi
           securityContext:
             allowPrivilegeEscalation: false
