@@ -18,10 +18,8 @@ spec:
           securityContext:
             seccompProfile:
               type: RuntimeDefault
-              or
-              type: DockerDefault
             allowPrivilegeEscalation: false
-            runAsUser: <UID higher then 10000>
+            runAsUser: 1000
             readOnlyRootFilesystem: true
             capabilities:
               drop:
