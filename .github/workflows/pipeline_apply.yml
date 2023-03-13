@@ -46,11 +46,11 @@ jobs:
                     
       - name: terraform apply 
         id: apply
-        run: terraform destroy --auto-approve
+        run: terraform apply --auto-approve
 
-      # - name: configure eks cluster
-      #   id: configure-cluster
-      #   run: aws eks update-kubeconfig --name prueba-devco --region us-east-1 && kubectl apply -f ./kubernetes/test.yml 
+      - name: configure eks cluster
+        id: configure-cluster
+        run: aws eks update-kubeconfig --name prueba-devco --region us-east-1 && kubectl apply -f ./kubernetes/test.yml 
 
         
     
